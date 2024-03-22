@@ -1,5 +1,6 @@
 "use client";
 
+import PbPageElementsProvider from "@/lib/PbPageElementsProvider";
 import { gql, useQuery } from "@apollo/client";
 import { Page } from "@webiny/app-page-builder-elements";
 
@@ -24,6 +25,7 @@ const Demo = () => {
   const getPublishedPageQuery = useQuery(GET_PUBLISHED_PAGE, {
     variables: {
       path: "/example-landing-page",
+      //path: "/welcome-to-webiny",
       preview: true,
     },
   });
@@ -34,7 +36,11 @@ const Demo = () => {
     return null;
   }
 
-  return <Page page={page} />;
+  return (
+    <PbPageElementsProvider>
+      <Page page={page} />
+    </PbPageElementsProvider>
+  );
 };
 
 export default Demo;
